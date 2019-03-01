@@ -1,0 +1,28 @@
+plugins {
+    id 'groovy'
+    id 'maven'
+}
+//uploadArchives 类型是upload，这个task不是'maven'创建的
+//而是'maven'定义了一个rule,而后由我们自己创建的，关于rule，请看后面内容
+uploadArchives{
+    //本地仓库的一种
+    repositories{
+        flatDir{
+            name "localRepository"
+            dir "localRepository/libs"
+        }
+    }
+}
+
+group 'com.mob.sdk'
+version '2019.0221.2318'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.15'
+    compile gradleApi()
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
